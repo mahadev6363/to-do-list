@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <form id="task-form">
+        <input type="text" id="task-input" placeholder="Add a new task" required>
+        <button type="submit">Add</button>
+    </form>
+    <ul id="task-list"></ul>
+    <script>
+        // Your JavaScript code here
+        const taskForm = document.getElementById('task-form');
+        const taskInput = document.getElementById('task-input');
+        const taskList = document.getElementById('task-list');
+
+        // Function to add a task
+        function addTask(taskText) {
+            // Create a new list item
+            const listItem = document.createElement('li');
+            listItem.textContent = taskText;
+
+            // Add buttons for deleting and marking as done
+
+            // Append the new task to the list
+            taskList.appendChild(listItem);
+        }
+
+        // Event listener for form submission
+        taskForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                addTask(taskText);
+                taskInput.value = '';
+            }
+        });
+
+        // Event listener for marking a task as done or deleting it
+        taskList.addEventListener('click', function (e) {
+            if (e.target.tagName === 'LI') {
+                e.target.classList.toggle('done');
+            }
+        });
+
+        // Initialize the task list (you can load from local storage here)
+    </script>
+</body>
+</html>
